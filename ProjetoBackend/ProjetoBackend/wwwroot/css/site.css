@@ -1,3 +1,4 @@
+
 html {
     font-size: 14px;
 }
@@ -18,7 +19,10 @@ html {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    /*    margin-bottom: 60px;*/
+    margin-bottom: 60px;
+}
+
+.nav-item .active {
+    border-bottom: 3px solid #8A2BE2; /* Cor roxa para a barra */
+    padding-bottom: 2px; /* Ajuste o valor para mover a barra mais para cima */
 }
