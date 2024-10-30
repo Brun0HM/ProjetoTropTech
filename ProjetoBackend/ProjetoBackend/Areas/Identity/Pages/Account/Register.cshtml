@@ -2,14 +2,27 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+    {
+        <style>
+            header, footer {
+                display: none
+            }
+
+            #login {
+                height: 100dvh;
+                background: url("@Url.Content("~/img/login.jpg")")
+            }
+        </style>
+    }
 }
+
 
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
+            <h2>Registre-se.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
