@@ -26,3 +26,7 @@ body {
     border-bottom: 3px solid #8A2BE2; /* Cor roxa para a barra */
     padding-bottom: 2px; /* Ajuste o valor para mover a barra mais para cima */
 }
+
+body {
+    overflow: hidden;
+}
