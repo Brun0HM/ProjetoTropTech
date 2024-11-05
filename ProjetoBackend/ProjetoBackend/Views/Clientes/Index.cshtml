@@ -2,49 +2,56 @@
 
 @{
     ViewData["Title"] = "Clientes";
+
 }
 
-<p style="font-size:50px; color: #710ABF; margin-bottom: 50px;"><strong>Clientes</strong></p>
-
-<form asp-action="Search" class="search-container text-end" method="get">
-    <input type="text" name="nome" placeholder="Buscar cliente..." class="search-input" />
-    <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
-</form>
 
 
 
-<table>
-    <thead>
-        <tr>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.Nome)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.Email)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.CnpjCpf)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.Celular)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.DataNascimento)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.DataCadastro)</th>
-            <th style="text-align: right;">@Html.DisplayNameFor(model => model.CadastroAtivo)</th>
+<div class="container">
+    <p style="font-size:50px; color: #710ABF; margin-bottom: 50px;"><strong>Clientes</strong></p>
 
-        </tr>
-    </thead>
-    <tbody style="background: #F8F8F8">
-        @foreach (var item in Model)
-        {
+    <form asp-action="Search" class="search-container text-end" method="get">
+        <input type="text" name="nome" placeholder="Buscar cliente..." class="search-input" />
+        <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
+    </form>
+
+
+
+    <table>
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
-                <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                <td>@Html.DisplayFor(modelItem => item.CnpjCpf)</td>
-                <td>@Html.DisplayFor(modelItem => item.Celular)</td>
-                <td>@Html.DisplayFor(modelItem => item.DataNascimento)</td>
-                <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
-                <td>@Html.DisplayFor(modelItem => item.CadastroAtivo)</td>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.Nome)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.Email)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.CnpjCpf)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.Celular)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.DataNascimento)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.DataCadastro)</th>
+                <th style="text-align: right;">@Html.DisplayNameFor(model => model.CadastroAtivo)</th>
 
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody style="background: #F8F8F8">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CnpjCpf)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Celular)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataNascimento)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CadastroAtivo)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
 
 
 
-<p>
-    <a asp-action="Create" class="btn" style="background-color: #932BE2; color: white; width: 197px; height: 49px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; border-radius: 15px;"><strong>Criar</strong></a>
-</p>
+    <p>
+        <a asp-action="Create" class="btn" style="background-color: #932BE2; color: white; width: 197px; height: 49px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; border-radius: 15px;"><strong>Criar</strong></a>
+    </p>
+
+</div>
