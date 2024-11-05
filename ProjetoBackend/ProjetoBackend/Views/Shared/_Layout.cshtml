@@ -15,41 +15,41 @@
 </head>
 <body class="inter-normal">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-0" style="background-color:#131313">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ProjetoBackend</a>
+                <a style="margin-left:37px" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/Logo.svg" alt="Alternate Text" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" style="font-size:16px">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Pagina Inicial</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Home" asp-action="Index">Pagina Inicial</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre Nós</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Home" asp-action="Sobre">Sobre Nós</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias de Produtos</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias de Produtos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Servicos" asp-action="Index">Servicos</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Servicos" asp-action="Index">Servicos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vendas" asp-action="Index">Vendas</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Vendas" asp-action="Index">Vendas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Compras" asp-action="Index">Compras</a>
+                        <li class="nav-item custom-link">
+                            <a class="nav-link text-light fw-bold custom-link" asp-area="" asp-controller="Compras" asp-action="Index">Compras</a>
                         </li>
 
 
@@ -65,10 +65,28 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - ProjetoBackend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer style="background:#131313" class="border-top footer text-light">
+        <div class="container Logo2 justify-content-center">
+            <img src="~/img/logo2.svg" alt="Alternate Text" />
         </div>
+        <div class="RS d-flex flex-column">
+            <div class="WS d-flex align-items-center justify-content-end">
+                <ion-icon style="color:#8A2BE2" name="logo-whatsapp"></ion-icon>
+                <span style="margin-left: 5px;">WhatsApp</span>
+            </div>
+            <div class="INS d-flex align-items-center justify-content-end">
+                <ion-icon style="color:#8A2BE2" name="logo-instagram"></ion-icon>
+                <span style="margin-left: 5px;">Instagram</span>
+            </div>
+            <div class="Vec d-flex align-items-center justify-content-end">
+                <img src="~/img/Vector.svg" alt="Vector Icon" />
+                <span style="margin-left: 5px;">TropTech@gmail.com</span>
+            </div>
+        </div>
+        <div class="Direitos container d-flex align-items-center justify-content-center">
+            Todos os direitos reservados ℗ TropTech
+        </div>
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
