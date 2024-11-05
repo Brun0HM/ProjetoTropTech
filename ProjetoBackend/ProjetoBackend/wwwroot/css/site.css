@@ -133,3 +133,49 @@ td a {
     font-size: 16px;
     border-radius: 12px;
 }
+
+.botaocancelar {
+    background-color: rgba(138, 43, 226, 0.04);
+    color: white;
+    width: 283px;
+    height: 49px;
+    border-radius: 5px;
+    border: 1px solid #C17DFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    color: #C17DFF;
+}
+
+.cadastro {
+    margin-top: 20px;
+    margin-bottom: 60px;
+    font-weight: 450;
+}
+
+.text-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.text-box-input {
+    padding: 15px;
+    border: 2px solid #D9D9D9;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    height: 50px;
+    background: none;
+    font-weight: 400;
+    width: 100%;
+}
+
+.text-danger {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #d9534f;
+}
