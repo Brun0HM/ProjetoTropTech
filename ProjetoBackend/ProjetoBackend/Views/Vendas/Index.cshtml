@@ -1,56 +1,72 @@
 ﻿@model IEnumerable<ProjetoBackend.Models.Venda>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Venda";
 }
+<div class="container">
+    <p class="titulo-cliente fw-bold">Venda</p>
 
-<h1>Index</h1>
+    <form asp-action="Search" class="search-container text-end" method="get">
+        <input type="text" name="nome" placeholder="Buscar Venda..." class="search-input" />
+        <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
+    </form>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NotaFiscal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValorTotal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table>
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NotaFiscal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cliente.Celular)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataVenda)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValorTotal)
-                </td>
-                <td>
-                    <a asp-controller="ItensVendas" asp-action="Index" asp-route-id="@item.VendaId">Produtos</a> |
-                    <a asp-controller="ServicosVendas" asp-action="Index" asp-route-id="@item.VendaId">Serviços</a> |
-                    <a asp-action="Edit" asp-route-id="@item.VendaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.VendaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.VendaId">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotaFiscal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataVenda)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorTotal)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody style="background: #FCFCFC">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotaFiscal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cliente.Celular)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataVenda)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorTotal)
+                    </td>
+                    <td class="btn-group dropend">
+                        <a class="more-options" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="152945" _msthash="398">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#A3A2A2" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu" _mstvisible="0">
+                            <li _mstvisible="1"><a class="dropdown-item" asp-action="Edit" asp-route-id="@item.VendaId" _msttexthash="70928" _msthash="399" _mstvisible="2">Editar</a></li>
+                            <li _mstvisible="1"><a class="dropdown-item" a asp-action="Delete" asp-route-id="@item.VendaId" _msttexthash="178750" _msthash="400" _mstvisible="2">Excluir</a></li>
+                            <li _mstvisible="1"><a class="dropdown-item" a asp-action="Index" asp-route-id="@item.VendaId" _msttexthash="178750" _msthash="401" _mstvisible="2">Serviços</a></li>
+                            <li _mstvisible="1"><a class="dropdown-item" a asp-action="Index" asp-route-id="@item.VendaId" _msttexthash="178750" _msthash="402" _mstvisible="2">Produtos</a></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <a asp-controller="ItensVendas" asp-action="Index" asp-route-id="@item.VendaId">Produtos</a> |
+                        <a asp-controller="ServicosVendas" asp-action="Index" asp-route-id="@item.VendaId">Serviços</a> |
+                        <a asp-action="Edit" asp-route-id="@item.VendaId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.VendaId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.VendaId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
