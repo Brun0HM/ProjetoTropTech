@@ -22,7 +22,7 @@ namespace ProjetoBackend.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            var produtos = await _context.Produtos.ToListAsync();
+            var produtos = await _context.Produtos.Include(c => c.Categoria).ToListAsync();
             return View(produtos.OrderBy(p => p.Nome));
         }
 
