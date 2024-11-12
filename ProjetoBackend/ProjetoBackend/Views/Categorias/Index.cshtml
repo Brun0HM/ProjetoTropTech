@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<ProjetoBackend.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categoria";
 }
 <div class="container">
-    <p class="titulo-cliente fw-bold">Clientes</p>
+    <p class="titulo-cliente fw-bold">Categoria</p>
     <form asp-action="Search" class="search-container text-end" method="get">
-        <input type="text" name="nome" placeholder="Buscar cliente..." class="search-input" />
+        <input type="text" name="nome" placeholder="Buscar Categoria..." class="search-input" />
         <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
     </form>
     <table>
@@ -37,3 +37,10 @@
             }
         </tbody>
     </table>
+
+
+    <p>
+        <a asp-action="Create" class="botaocriar fw-semibold">Criar</a>
+    </p>
+
+</div>
