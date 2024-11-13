@@ -186,3 +186,13 @@ td a {
     color: #000000;
     margin-bottom: 50px;
 }
+
+
+.crow {
+    display: flex;
+    gap: 15px;
+    .col-md-6
+
+{
+    flex: 1;
+}
