@@ -4,61 +4,76 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="container">
 
-<h4>Cliente</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ClienteId" />
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CnpjCpf" class="control-label"></label>
-                <input asp-for="CnpjCpf" class="form-control" />
-                <span asp-validation-for="CnpjCpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CadastroAtivo" class="control-label"></label>
-                <input asp-for="CadastroAtivo" class="form-control" />
-                <span asp-validation-for="CadastroAtivo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <p class="titulo-criar fw-bold">Clientes</p>
+
+    <hr class="border border-dark border-1">
+
+    <h4 class="cadastro">Editar cadastro de Cliente</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="text-box-container form-group mb-2">
+                    <input asp-for="Nome" class="text-box-input form-control" placeholder="Nome" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 text-box-container mb-2">
+                        <input type="" asp-for="CnpjCpf" class="text-box-input form-control" placeholder="Cpf" />
+                        <span asp-validation-for="CnpjCpf" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-6 text-box-container">
+                        <input asp-for="Celular" class="text-box-input form-control" oninput="formatarTelefone(this)" id="telefone" placeholder="Celular" />
+                        <span asp-validation-for="Celular" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="text-box-container form-group mb-2">
+                    <input type="date" asp-for="DataNascimento" class="text-box-input form-control" />
+                    <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                </div>
+                <div class="text-box-container form-group mb-2">
+                    <input asp-for="Email" class="text-box-input form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+
+                    <input type="hidden" asp-for="DataCadastro" class="form-control" />
+
+                </div>
+                <div class="form-group">
+
+                    <input type="hidden" asp-for="CadastroAtivo" class="form-control" />
+
+                    <div class="row">
+                        <div class="col col-md-6 mt-4 form-group">
+                            <input type="submit" value="Editar" class="botao-criar fw-semibold" />
+                        </div>
+
+                        <div class="col col-md-6 mt-4 d-flex justify-content-end">
+                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+</div>

@@ -131,7 +131,8 @@ td a {
     justify-content: center;
     text-decoration: none;
     font-size: 16px;
-    border-radius: 12px;
+    border-radius: 15px;
+    border: none
 }
 
 .botaocancelar {
@@ -178,4 +179,10 @@ td a {
     font-size: 12px;
     margin-top: 5px;
     color: #d9534f;
+}
+
+.titulo-criar {
+    font-size: 50px;
+    color: #000000;
+    margin-bottom: 50px;
 }
