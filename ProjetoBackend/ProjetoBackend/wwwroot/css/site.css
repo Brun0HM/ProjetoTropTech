@@ -138,7 +138,7 @@ td a {
 .botaocancelar {
     background-color: rgba(138, 43, 226, 0.04);
     color: white;
-    width: 283px;
+    width: 100%;
     height: 49px;
     border-radius: 5px;
     border: 1px solid #C17DFF;
@@ -185,14 +185,4 @@ td a {
     font-size: 50px;
     color: #000000;
     margin-bottom: 50px;
-}
-
-
-.crow {
-    display: flex;
-    gap: 15px;
-    .col-md-6
-
-{
-    flex: 1;
 }

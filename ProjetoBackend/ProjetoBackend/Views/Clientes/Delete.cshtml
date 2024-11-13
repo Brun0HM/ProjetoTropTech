@@ -5,57 +5,68 @@
 }
 
 <div class="container">
-    <div class="row crow">
+    <div class="row">
+        <!-- Espaço vazio -->
         <div class="col-12 col-md-1 col-lg-2"> </div>
-        <div class="col-12 col-md">
-            <p class="titulo-criar fw-bold">Clientes</p>
-            <hr class="border border-dark border-1">
-            <h4 class="cadastro fw-medium ">Excluir Cliente</h4>
 
-            <div class="row crow">
+
+        <div class="col-12 col-md">
+            <div class="row">
+                <div class="col">
+                    <p class="titulo-criar fw-bold">Clientes</p>
+                    <hr class="border border-dark border-1">
+                    <h4 class="cadastro fw-medium ">Excluir Cliente</h4>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="titulodelete fw-bold col-2 mb-3">@Html.DisplayNameFor(model => model.Nome):</div>
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.Nome)</div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-sm-2 mb-3">@Html.DisplayNameFor(model => model.Email):</div>
                 <div class="conteudodelete col">@Model.Email</div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-sm-2 mb-3">@Html.DisplayNameFor(model => model.CnpjCpf):</div>
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.CnpjCpf)</div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-sm-2 mb-3">@Html.DisplayNameFor(model => model.Celular):</div>
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.Celular)</div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-sm-2 mb-3">@Html.DisplayNameFor(model => model.DataNascimento):</div>
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.DataNascimento)</div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-sm-2 mb-5">@Html.DisplayNameFor(model => model.CadastroAtivo):</div>
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.CadastroAtivo)</div>
             </div>
 
+            <div class="row m-0 p-0">
+                <div class="col">
+                    <input type="hidden" asp-for="ClienteId" class="form-control" />
 
-            <div class="form-group">
+                    <div class="row">
+                        <div class="col-12 col-md-5 mt-4">
+                            <form asp-action="Delete">
+                                <input type="submit" value="Excluir" class="botao-criar fw-semibold" />
+                            </form>
+                        </div>
 
-                <input type="hidden" asp-for="ClienteId" class="form-control" />
+                        <div class="d-none d-md-flex col-md"></div>
 
-                <div class="row crow">
-                    <div class="col-12 col-md-6 mt-4 form-group w-100">
-                        <form asp-action="Delete">
-                            <input type="submit" value="Excluir" class="botao-criar fw-semibold" />
-                        </form>
-                    </div>
-
-                    <div class="col-12 col-md-6 mt-4 d-flex w-100 justify-content-end ">
-                        <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        <div class="col-12 col-md-5 mt-4">
+                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
+
+        <!-- Espaço vazio -->
         <div class="col-12 col-md-1 col-lg-2"> </div>
 
     </div>
