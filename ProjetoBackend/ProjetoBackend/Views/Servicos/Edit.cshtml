@@ -1,39 +1,57 @@
-﻿@model ProjetoBackend.Models.Servico
+﻿                @model ProjetoBackend.Models.Servico
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<div class="container">
 
-<h4>Servico</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ServicoId" />
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValorServico" class="control-label"></label>
-                <input asp-for="ValorServico" class="form-control" />
-                <span asp-validation-for="ValorServico" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <p class="titulo-criar fw-bold">Serviços</p>
+
+    <hr class="border border-dark border-1">
+
+    <h4 class="cadastro">Editar Serviço</h4>
+
+    <div class="row">
+        <div class="col-12">
+            <form asp-action="Editar">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ServicoId" />
+
+                <div class="text-box-container form-group mb-2">
+                    <input asp-for="Nome" class="text-box-input form-control" placeholder="Fornecedor" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 text-box-container mb-2">
+                        <input type="" asp-for="ValorServico" class="text-box-input form-control" placeholder="Cpf" />
+                        <span asp-validation-for="ValorServico" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-md-6 mt-4 form-group">
+                        <input type="submit" value="Editar" class="botaocriar fw-semibold" />
+                    </div>
+
+                    <div class="col col-md-6 mt-4 d-flex justify-content-end">
+                        <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+
+</div>

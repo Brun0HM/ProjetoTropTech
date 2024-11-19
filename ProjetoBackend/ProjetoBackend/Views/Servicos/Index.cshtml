@@ -1,39 +1,34 @@
 ﻿@model IEnumerable<ProjetoBackend.Models.Servico>
 
 @{
-    ViewData["Title"] = "Serviço";
+    ViewData["Title"] = "Serviços";
 }
 
 <div class="container">
-    <p class="titulo-cliente fw-bold">Clientes</p>
+    <p class="titulo-cliente fw-bold">Serviços</p>
 
     <form asp-action="Search" class="search-container text-end" method="get">
-        <input type="text" name="nome" placeholder="Buscar cliente..." class="search-input" />
+        <input type="text" name="nome" placeholder="Buscar serviços..." class="search-input" />
         <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
-    </form></p>
+    </form>
+
+
 
     <table>
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ValorServico)
-                </th>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.ValorServico)</th>
                 <th></th>
+
             </tr>
         </thead>
         <tbody style="background: #FCFCFC">
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ValorServico)
-                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorServico)</td>
                     <td class="btn-group dropend w-100 justify-content-end">
                         <a class="more-options" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="152945" _msthash="398">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#A3A2A2" class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -45,7 +40,17 @@
                             <li _mstvisible="1"><a class="dropdown-item" a asp-action="Delete" asp-route-id="@item.ServicoId" _msttexthash="178750" _msthash="400" _mstvisible="2">Excluir</a></li>
                         </ul>
                     </td>
+
                 </tr>
             }
         </tbody>
     </table>
+
+
+
+    <div class="col-6 col-md-3">
+        <a class="botaocriarIndex w-100 m-0 p-0 fw-semibold " asp-action="Create">Criar</a>
+    </div>
+
+
+</div>
