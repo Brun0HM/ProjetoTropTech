@@ -9,7 +9,7 @@
     }
 </style>
 <div class="container">
-    <div class="row crow">
+    <div class="row">
         <div class="col-12 col-md-1 col-lg-2"> </div>
         <div class="col-12 col-md">
             <p class="titulo-criar fw-bold">Fornecedores</p>
@@ -35,7 +35,7 @@
                     @Html.DisplayFor(model => model.Celular)
                 </div>
             </div>
-            <div class="row crow">
+            <div class="row">
                 <div class="titulodelete fw-bold col-2 mb-3">
                     @Html.DisplayNameFor(model => model.CnpjCpf)
                 </div>
@@ -43,16 +43,19 @@
                     @Html.DisplayFor(model => model.CnpjCpf)
                 </div>
             </div>
-            <input type="hidden" asp-for="FornecedorId" class="form-control" />
+            <div class="row m-0 p-0">
+                <div class="col">
+                    <input type="hidden" asp-for="FornecedorId" class="form-control" />
 
-            <div class="crow">
-                <div class="col-6 mt-4 form-group w-100 d-flex">
-                    <form asp-action="Delete">
-                        <input type="submit" value="Excluir" class="botao-criar fw-semibold" />
-                    </form>
-                </div>
-                <div class="col-12 col-md-6 mt-4 d-flex w-100 align-content-end">
-                    <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                    <div class="row">
+                        <div class="col col-md-6 mt-4 p-0 form-group">
+                            <input type="submit" value="Excluir" class=" botaocriar fw-semibold" />
+                        </div>
+
+                        <div class="col col-md-6 mt-4 d-flex p-0 justify-content-end">
+                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-1 col-lg-2"> </div>

@@ -105,10 +105,7 @@ namespace ProjetoBackend.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ClienteId,Nome,Email,CnpjCpf,Celular,DataNascimento,DataCadastro,CadastroAtivo")] Cliente cliente)
         {
-            if (id != cliente.ClienteId)
-            {
-                return NotFound();
-            }
+
 
             if (ModelState.IsValid)
             {

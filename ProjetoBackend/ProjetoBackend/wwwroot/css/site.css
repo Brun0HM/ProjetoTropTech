@@ -124,21 +124,37 @@ td a {
 .botaocriar {
     background-color: #932BE2;
     color: white;
-    width: 197px;
+    width: 80%;
     height: 49px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     font-size: 16px;
-    border-radius: 15px;
-    border: none
+    border-radius: 5px;
+    font-weight: 300;
+    border: none;
+}
+
+
+.botaocriarIndex {
+    background-color: #932BE2;
+    color: white;
+    width: 30%;
+    height: 49px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    font-weight: 300;
+    border: none;
 }
 
 .botaocancelar {
     background-color: rgba(138, 43, 226, 0.04);
-    color: white;
-    width: 100%;
+    width: 80%;
     height: 49px;
     border-radius: 5px;
     border: 1px solid #C17DFF;
@@ -185,4 +201,17 @@ td a {
     font-size: 50px;
     color: #000000;
     margin-bottom: 50px;
+}
+
+
+.text-box-select {
+    padding: 10px;
+    border: 2px solid #D9D9D9;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    height: 50px;
+    background: none;
+    font-weight: 400;
+    width: 100%;
 }

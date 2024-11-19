@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoBackend.Models.Produto>
+﻿                @model IEnumerable<ProjetoBackend.Models.Produto>
 
 @{
     ViewData["Title"] = "Produtos";
@@ -8,45 +8,33 @@
     <p class="titulo-cliente fw-bold">Produtos</p>
 
     <form asp-action="Search" class="search-container text-end" method="get">
-        <input type="text" name="nome" placeholder="Buscar Produtos..." class="search-input" />
+        <input type="text" name="nome" placeholder="Buscar produto..." class="search-input" />
         <button type="submit" class="search-button"><ion-icon name="search"></ion-icon></button>
     </form>
+
+
 
     <table>
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Nome)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Preco)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Estoque)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Categoria)
-                </th>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Preco)</th>
+                <th>@Html.DisplayNameFor(model => model.Estoque)</th>
+                <th>@Html.DisplayNameFor(model => model.Categoria)</th>
                 <th></th>
+
             </tr>
         </thead>
-        <tbody>
+        <tbody style="background: #FCFCFC">
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Preco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estoque)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                    </td>
-                    <td class="btn-group dropend w-100 justify-content-end">
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Estoque)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Categoria.Nome)</td>
+
+                    <td class="btn-group dropend">
                         <a class="more-options" data-bs-toggle="dropdown" aria-expanded="false" _msttexthash="152945" _msthash="398">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#A3A2A2" class="bi bi-three-dots" viewBox="0 0 16 16">
                                 <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
@@ -57,14 +45,17 @@
                             <li _mstvisible="1"><a class="dropdown-item" a asp-action="Delete" asp-route-id="@item.ProdutoId" _msttexthash="178750" _msthash="400" _mstvisible="2">Excluir</a></li>
                         </ul>
                     </td>
+
                 </tr>
             }
         </tbody>
     </table>
 
 
-    <p>
-        <a asp-action="Create" class="botaocriar fw-semibold">Criar</a>
-    </p>
+
+    <div class="col-6 col-md-3">
+        <a class="botaocriarIndex m-0 p-0 fw-semibold " asp-action="Create">Criar</a>
+    </div>
+
 
 </div>

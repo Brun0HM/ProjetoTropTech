@@ -4,23 +4,41 @@
 }
 
 .Sobre-nos {
-    color: #932BE2;
+    margin-top: 200px;
+    margin-bottom: 300px
 }
 
+    .Sobre-nos h1 {
+        color: #932BE2;
+        font-size: 70px;
+        text-align: center;
+        margin-right: 180px;
+    }
+
 .QuemSomos {
+    width: 850px;
+    height: 850px;
     background: #5E0F9A;
+    color: white;
+    border-radius: 15px;
+    margin-left: 200px;
+    margin-right: -300px;
+    z-index: 1000;
+    align-items: center;
 }
 
     .QuemSomos p {
         max-width: 500px;
-        font-size: 35px;
+        font-size: 52px;
         margin: 0px auto 0px;
         text-align: center;
         margin-top: 30px;
     }
 
     .QuemSomos h4 {
-        font-size: 25px;
+        font-size: 39px;
+        margin-top: 50px;
+        margin-left: 30px;
     }
 
 .Membros {
@@ -30,9 +48,17 @@
     border-radius: 17px;
 }
 
-.Mazzi p {
-    font-size: 25px;
+.Mazzi {
+    margin-left: 420px;
+    margin-top: 170px;
+    margin-right: 60px;
 }
+
+    .Mazzi p {
+        font-size: 32px;
+        max-width: 504px;
+        margin-left: 60px;
+    }
 
 .Bruno p {
     font-size: 32px;
@@ -41,7 +67,10 @@
     text-align: right
 }
 
-.Bruno img {
+.Bruno {
+    margin-left: 430px;
+    margin-top: 100px;
+    margin-right: 60px;
 }
 
 .Luz {

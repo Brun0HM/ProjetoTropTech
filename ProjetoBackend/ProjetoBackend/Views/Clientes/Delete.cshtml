@@ -44,25 +44,17 @@
                 <div class="conteudodelete col">@Html.DisplayFor(model => model.CadastroAtivo)</div>
             </div>
 
-            <div class="row m-0 p-0">
-                <div class="col">
-                    <input type="hidden" asp-for="ClienteId" class="form-control" />
+            <div class="row">
+                <div class="col col-md-6 mt-4 p-0 form-group">
+                    <input type="submit" value="Excluir" class=" botaocriar fw-semibold" />
+                </div>
 
-                    <div class="row">
-                        <div class="col-12 col-md-5 mt-4">
-                            <form asp-action="Delete">
-                                <input type="submit" value="Excluir" class="botao-criar fw-semibold" />
-                            </form>
-                        </div>
-
-                        <div class="d-none d-md-flex col-md"></div>
-
-                        <div class="col-12 col-md-5 mt-4">
-                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
-                        </div>
-                    </div>
+                <div class="col col-md-6 mt-4 d-flex p-0 justify-content-end">
+                    <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
                 </div>
             </div>
+
+
 
         </div>
 

@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <None Remove="Areas\Identity\Pages\Account\Register.css" />
+    <None Remove="Views\Clientes\Create.cshtml.css" />
+    <None Remove="Views\Home\Sonre.cshtml.css" />
   </ItemGroup>
 
   <ItemGroup>

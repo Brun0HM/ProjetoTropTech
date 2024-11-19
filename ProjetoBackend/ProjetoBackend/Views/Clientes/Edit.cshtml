@@ -14,8 +14,9 @@
 
     <div class="row">
         <div class="col-md-12">
-            <form asp-action="Create">
+            <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ClienteId" />
                 <div class="text-box-container form-group mb-2">
                     <input asp-for="Nome" class="text-box-input form-control" placeholder="Nome" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
@@ -52,7 +53,7 @@
 
                     <div class="row">
                         <div class="col col-md-6 mt-4 form-group">
-                            <input type="submit" value="Editar" class="botao-criar fw-semibold" />
+                            <input type="submit" value="Editar" class="botaocriar fw-semibold" />
                         </div>
 
                         <div class="col col-md-6 mt-4 d-flex justify-content-end">
