@@ -1,7 +1,7 @@
 ﻿                @model ProjetoBackend.Models.Servico
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Edit";
 }
 
 <div class="container">
@@ -10,26 +10,23 @@
 
     <hr class="border border-dark border-1">
 
-    <h4 class="cadastro">Editar Serviço</h4>
+    <h4 class="cadastro">Cadastro de Serviço</h4>
 
-    <div class="row">
-        <div class="col-12">
-            <form asp-action="Editar">
+    <div class="row crow">
+        <div class="col-md-12">
+            <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="ServicoId" />
-
                 <div class="text-box-container form-group mb-2">
                     <input asp-for="Nome" class="text-box-input form-control" placeholder="Fornecedor" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-12 text-box-container mb-2">
+                <div class="row crow">
+                    <div class="col-12 col-md-6 text-box-container mb-2">
                         <input type="" asp-for="ValorServico" class="text-box-input form-control" placeholder="Cpf" />
                         <span asp-validation-for="ValorServico" class="text-danger"></span>
                     </div>
                 </div>
-
-                <div class="row">
+                <div class="row crow">
                     <div class="col col-md-6 mt-4 form-group">
                         <input type="submit" value="Editar" class="botaocriar fw-semibold" />
                     </div>
