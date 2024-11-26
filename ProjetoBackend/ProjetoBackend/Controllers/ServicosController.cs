@@ -68,20 +68,23 @@ namespace ProjetoBackend.Controllers
         }
 
         // GET: Servicos/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        [HttpGet]
+        public IActionResult Editar(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var servico = await _context.Servicos.FindAsync(id);
+            var servico = _context.Servicos.Find(id);
             if (servico == null)
             {
                 return NotFound();
             }
+
             return View(servico);
         }
+
 
         // POST: Servicos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
