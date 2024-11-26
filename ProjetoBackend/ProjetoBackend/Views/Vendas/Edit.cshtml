@@ -1,49 +1,74 @@
 ﻿@model ProjetoBackend.Models.Venda
 
+
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<div class="container">
 
-<h4>Venda</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="VendaId" />
-            <div class="form-group">
-                <label asp-for="NotaFiscal" class="control-label"></label>
-                <input asp-for="NotaFiscal" class="form-control" />
-                <span asp-validation-for="NotaFiscal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataVenda" class="control-label"></label>
-                <input asp-for="DataVenda" class="form-control" />
-                <span asp-validation-for="DataVenda" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" />
-                <span asp-validation-for="ValorTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <p class="titulo-criar fw-bold">Vendas</p>
+
+    <hr class="border border-dark border-1">
+
+    <h4 class="cadastro">Editar Vendas</h4>
+
+    <div class="row crow">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="VendaId" />
+                <div class="text-box-container form-group mb-2">
+                    <label asp-for="NotaFiscal" class="control-label"></label>
+                    <input asp-for="NotaFiscal" class="text-box-input form-control" />
+                    <span asp-validation-for="NotaFiscal" class="text-danger"></span>
+                </div>
+
+                <div class="row crow">
+                    <div class="col-12 col-md-6 text-box-container mb-2">
+                        <label asp-for="ClienteId" class="control-label"></label>
+                        <select asp-for="ClienteId" class="text-box-select form-control" asp-items="ViewBag.ClienteId"></select>
+                        <span asp-validation-for="ClienteId" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-6 text-box-container">
+                        <label asp-for="DataVenda" class="control-label" readonly></label>
+                        <input asp-for="DataVenda" class="text-box-input form-control" />
+                        <span asp-validation-for="DataVenda" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="text-box-container form-group mb-2">
+                    <label asp-for="ValorTotal" class="control-label"></label>
+                    <input asp-for="ValorTotal" class="text-box-input form-control" />
+                    <span asp-validation-for="ValorTotal" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="row crow">
+                        <div class="col col-md-6 mt-4 form-group">
+                            <input type="submit" value="Editar" class="botaocriar fw-semibold" />
+                        </div>
+
+                        <div class="col col-md-6 mt-4 d-flex justify-content-end">
+                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+</div>

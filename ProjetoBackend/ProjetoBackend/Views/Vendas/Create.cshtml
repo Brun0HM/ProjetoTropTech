@@ -1,50 +1,69 @@
 ﻿@model ProjetoBackend.Models.Venda
 
+
+
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
 }
+<div class="container">
 
-<h1>Create</h1>
+    <p class="titulo-criar fw-bold">Vendas</p>
 
-<h4>Venda</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+    <hr class="border border-dark border-1">
+
+    <h4 class="cadastro">Cadastro de Vendas</h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="text-box-container form-group mb-2">
+                    <select asp-for="ClienteId" class="text-box-select form-control" asp-items="ViewBag.ClienteId"></select>
+                    <span asp-validation-for="ClienteId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
 
 
-                <input type="hidden" asp-for="NotaFiscal" class="form-control" />
+                    <input type="hidden" asp-for="NotaFiscal" class="form-control" />
 
-            </div>
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
-            </div>
-            <div class="form-group">
+                </div>
+                <div class="text-box-container form-group mb-2">
+                    <input asp-for="ValorTotal" readonly="readonly" value="0.00" class="text-box-input form-control" />
+                    <span asp-validation-for="ValorTotal" class="text-danger"></span>
 
-                <input type="hidden" asp-for="DataVenda" class="form-control" />
+                </div>
+                <div class="form-group">
 
-            </div>
-            <div class="form-group">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" readonly="readonly" value="0.00" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+                    <input type="hidden" asp-for="DataVenda" class="form-control" />
+
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col col-md-6 mt-4 form-group">
+                            <input type="submit" value="Criar" class="botaocriar fw-semibold" />
+                        </div>
+
+                        <div class="col col-md-6 mt-4 d-flex justify-content-end">
+                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-       
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
     }
-}
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+</div>
