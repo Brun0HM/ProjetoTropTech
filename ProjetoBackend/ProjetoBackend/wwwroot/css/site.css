@@ -87,9 +87,14 @@ body {
         font-size: 20px;
     }
 
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 table {
     width: 100%;
-    border-collapse: separate;
+    min-width: 800px;
     border-spacing: 0;
     border: 2px solid #D9D9D9;
     border-radius: 20px;
@@ -214,14 +219,4 @@ td a {
     background: none;
     font-weight: 400;
     width: 100%;
-}
-
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
 }
