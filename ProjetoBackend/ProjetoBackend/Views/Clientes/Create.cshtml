@@ -20,11 +20,11 @@
 
                 <div class="row">
                     <div class="col-md-6 text-box-container mb-2">
-                        <input type="" asp-for="CnpjCpf" class="text-box-input form-control" placeholder="Cpf" />
+                        <input type="" asp-for="CnpjCpf" maxlength="11" class="text-box-input form-control" placeholder="Cpf" />
                         <span asp-validation-for="CnpjCpf" class="text-danger"></span>
                     </div>
                     <div class="col-md-6 text-box-container">
-                        <input asp-for="Celular" class="text-box-input form-control" oninput="formatarTelefone(this)" id="telefone" placeholder="Celular" />
+                        <input asp-for="Celular" class="text-box-input form-control" maxlength="15" oninput="formatarTelefone(this)" id="telefone" placeholder="Celular" />
                         <span asp-validation-for="Celular" class="text-danger"></span>
                     </div>
                 </div>

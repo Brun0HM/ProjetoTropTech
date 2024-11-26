@@ -215,3 +215,13 @@ td a {
     font-weight: 400;
     width: 100%;
 }
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
