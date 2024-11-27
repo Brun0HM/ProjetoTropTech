@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoBackend.Data;
 using ProjetoBackend.Models;
@@ -25,15 +23,19 @@ namespace ProjetoBackend.Controllers
             var fornecedores = await _context.Fornecedores.ToListAsync();
             return View(fornecedores.OrderBy(f => f.Nome));
         }
+
         public async Task<IActionResult> Search(string nome)
         {
-            if (string.IsNullOrEmpty(nome)) // Handle empty search term
+            if (string.IsNullOrEmpty(nome))
             {
-                return RedirectToAction(nameof(Index)); // Redirect to main Index
+                return RedirectToAction(nameof(Index));
             }
 
-            var Fornecedores = await _context.Fornecedores.Where(c => c.Nome.Contains(nome)).ToListAsync();
-            return View("Index", Fornecedores.OrderBy(c => c.Nome)); // Reuse the existing Index view
+            var fornecedores = await _context.Fornecedores
+                .Where(c => c.Nome.Contains(nome))
+                .ToListAsync();
+
+            return View("Index", fornecedores.OrderBy(c => c.Nome));
         }
 
         // GET: Fornecedores/Details/5
@@ -46,6 +48,7 @@ namespace ProjetoBackend.Controllers
 
             var fornecedor = await _context.Fornecedores
                 .FirstOrDefaultAsync(m => m.FornecedorId == id);
+
             if (fornecedor == null)
             {
                 return NotFound();
@@ -61,23 +64,24 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Fornecedores/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FornecedorId,Nome,Email,Celular,CnpjCpf")] Fornecedor fornecedor)
         {
             if (ModelState.IsValid)
             {
+                fornecedor.FornecedorId = Guid.NewGuid(); // Gera um novo ID único para o fornecedor
                 _context.Add(fornecedor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(fornecedor);
         }
 
         // GET: Fornecedores/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -89,12 +93,11 @@ namespace ProjetoBackend.Controllers
             {
                 return NotFound();
             }
+
             return View(fornecedor);
         }
 
         // POST: Fornecedores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("FornecedorId,Nome,Email,Celular,CnpjCpf")] Fornecedor fornecedor)
@@ -122,8 +125,10 @@ namespace ProjetoBackend.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(fornecedor);
         }
 
@@ -137,6 +142,7 @@ namespace ProjetoBackend.Controllers
 
             var fornecedor = await _context.Fornecedores
                 .FirstOrDefaultAsync(m => m.FornecedorId == id);
+
             if (fornecedor == null)
             {
                 return NotFound();
@@ -148,15 +154,15 @@ namespace ProjetoBackend.Controllers
         // POST: Fornecedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var fornecedor = await _context.Fornecedores.FindAsync(id);
             if (fornecedor != null)
             {
                 _context.Fornecedores.Remove(fornecedor);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
