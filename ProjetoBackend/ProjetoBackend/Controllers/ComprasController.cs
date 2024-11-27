@@ -46,8 +46,13 @@ namespace ProjetoBackend.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
+
+            ViewBag.FornecedorId = new SelectList(_context.Fornecedores, "FornecedorId", "Nome");
+            ViewBag.ProdutoId = new SelectList(_context.Produtos, "ProdutoId", "Nome");
+
             return View();
         }
+
 
         // POST: Compras/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

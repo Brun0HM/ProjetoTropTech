@@ -15,41 +15,41 @@
         <div class="col-md-12">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <!--
+
                 <div class="row">
                     <div class="col-12 col-md-12 text-box-container mb-2">
-                        <input asp-for="Produto.Nome" class="text-box-input form-control" placeholder="Produto" />
-                        <span asp-validation-for="Produto.Nome" class="text-danger"></span>
+                        <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId"></select>
+                        <span asp-validation-for="ProdutoId" class="text-danger"></span>
                     </div>
-                    -->
-                <div class="row">
-                    <div class="text-box-container form-group col-md-6 mb-2">
-                        <input asp-for="FornecedorId" class="text-box-input form-control" placeholder="Fornecedor" />
-                        <span asp-validation-for="FornecedorId" class="text-danger"></span>
-                    </div>
-                    <div class="col-12 col-md-6 text-box-container">
-                        <input asp-for="ValorTotal" class="text-box-input form-control" oninput="formatarTelefone(this)" id="telefone" placeholder="Valor Total" />
-                        <span asp-validation-for="ValorTotal" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 text-box-container mb-2">
-                    <input type="date" asp-for="DataCompra" class="text-box-input form-control" hidden placeholder="Data das Compras" />
-                    <span asp-validation-for="DataCompra" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
 
                     <div class="row">
-                        <div class="col col-md-6 mt-4 form-group">
-                            <input type="submit" value="Criar" class="botaocriar fw-semibold" />
+                        <div class="text-box-container form-group col-md-6 mb-2">
+                            <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.FornecedorId"></select>
+                            <span asp-validation-for="FornecedorId" class="text-danger"></span>
                         </div>
-
-                        <div class="col col-md-6 mt-4 d-flex justify-content-end">
-                            <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                        <div class="col-12 col-md-6 text-box-container">
+                            <input asp-for="ValorTotal" class="text-box-input form-control" oninput="formatarTelefone(this)" id="telefone" placeholder="Valor Total" />
+                            <span asp-validation-for="ValorTotal" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="col-12 col-md-6 text-box-container mb-2">
+                        <input type="date" asp-for="DataCompra" class="text-box-input form-control" hidden placeholder="Data das Compras" />
+                        <span asp-validation-for="DataCompra" class="text-danger"></span>
+                    </div>
 
-                </div>
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col col-md-6 mt-4 form-group">
+                                <input type="submit" value="Criar" class="botaocriar fw-semibold" />
+                            </div>
+
+                            <div class="col col-md-6 mt-4 d-flex justify-content-end">
+                                <a class="botaocancelar m-0 p-0 fw-semibold" asp-action="Index">Cancelar</a>
+                            </div>
+                        </div>
+
+                    </div>
 
             </form>
         </div>

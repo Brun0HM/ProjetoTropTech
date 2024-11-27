@@ -6,10 +6,12 @@ namespace ProjetoBackend.Models
     public class Compra
     {
         public Guid CompraId { get; set; }
-        [Required(ErrorMessage = "Fornecedor")]
+        [Required(ErrorMessage = "Fornecedor não pode estar vazio")]
         [Display(Name = "Fornecedor")]
         public Guid FornecedorId { get; set; }
-        [Display(Name = "Fornecedor")]
+        [Required(ErrorMessage = "Produto não pode estar vazio")]
+        [Display(Name = "Produto")]
+        public Guid ProdutoId { get; set; }
         public Fornecedor? Fornecedor { get; set; }
         [Display(Name = "Data da Compra")]
         public DateTime? DataCompra { get; set; } = DateTime.Now;
