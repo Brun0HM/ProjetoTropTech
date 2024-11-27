@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +21,17 @@ namespace ProjetoBackend.Controllers
         // GET: Vendas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Vendas.Include(v => v.Cliente);
-            return View(await applicationDbContext.OrderBy(v => v.NotaFiscal).ToListAsync());
+            var vendas = await _context.Vendas
+                .Include(v => v.Cliente)
+                .OrderBy(v => v.NotaFiscal)
+                .ToListAsync();
+            return View(vendas);
         }
 
         // GET: Vendas/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return NotFound();
             }
@@ -53,22 +55,25 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Vendas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VendaId,NotaFiscal,ClienteId,DataVenda,ValorTotal")] Venda venda)
+        public async Task<IActionResult> Create([Bind("ClienteId,ValorTotal")] Venda venda)
         {
             if (ModelState.IsValid)
             {
-                // Auto incremento da nota fiscal
-                venda.NotaFiscal = _context.Vendas.Count() + 1;
+                // Incrementa a nota fiscal de forma segura
+                var ultimaNota = await _context.Vendas.MaxAsync(v => (int?)v.NotaFiscal) ?? 0;
+                venda.NotaFiscal = ultimaNota + 1;
+
+                // Define outros campos automáticos
                 venda.DataVenda = DateTime.Now;
                 venda.VendaId = Guid.NewGuid();
+
                 _context.Add(venda);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome", venda.ClienteId);
             return View(venda);
         }
@@ -76,7 +81,7 @@ namespace ProjetoBackend.Controllers
         // GET: Vendas/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return NotFound();
             }
@@ -86,16 +91,15 @@ namespace ProjetoBackend.Controllers
             {
                 return NotFound();
             }
+
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome", venda.ClienteId);
             return View(venda);
         }
 
         // POST: Vendas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("VendaId,NotaFiscal,ClienteId,DataVenda,ValorTotal")] Venda venda)
+        public async Task<IActionResult> Edit(Guid id, [Bind("VendaId,ClienteId,ValorTotal")] Venda venda)
         {
             if (id != venda.VendaId)
             {
@@ -106,12 +110,22 @@ namespace ProjetoBackend.Controllers
             {
                 try
                 {
-                    _context.Update(venda);
+                    // Busca os dados originais e atualiza manualmente para evitar sobreescrita de campos
+                    var vendaOriginal = await _context.Vendas.FindAsync(id);
+                    if (vendaOriginal == null)
+                    {
+                        return NotFound();
+                    }
+
+                    vendaOriginal.ClienteId = venda.ClienteId;
+                    vendaOriginal.ValorTotal = venda.ValorTotal;
+
+                    _context.Update(vendaOriginal);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VendaExists(venda.VendaId))
+                    if (!await VendaExists(id))
                     {
                         return NotFound();
                     }
@@ -122,6 +136,7 @@ namespace ProjetoBackend.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome", venda.ClienteId);
             return View(venda);
         }
@@ -129,7 +144,7 @@ namespace ProjetoBackend.Controllers
         // GET: Vendas/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return NotFound();
             }
@@ -154,15 +169,16 @@ namespace ProjetoBackend.Controllers
             if (venda != null)
             {
                 _context.Vendas.Remove(venda);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VendaExists(Guid id)
+        // Verifica se a venda existe
+        private async Task<bool> VendaExists(Guid id)
         {
-            return _context.Vendas.Any(e => e.VendaId == id);
+            return await _context.Vendas.AnyAsync(e => e.VendaId == id);
         }
     }
 }
