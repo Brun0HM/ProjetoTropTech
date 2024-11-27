@@ -230,3 +230,8 @@ td a {
     text-align: center;
     align-items: center;
 }
+
+
+center ~ * {
+    display: none !important;
+}

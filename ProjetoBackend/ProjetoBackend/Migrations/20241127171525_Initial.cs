@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjetoBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -264,7 +264,9 @@ namespace ProjetoBackend.Migrations
                     FornecedorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProdutoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCompra = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ValorUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantidade = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

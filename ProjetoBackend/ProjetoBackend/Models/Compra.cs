@@ -17,5 +17,8 @@ namespace ProjetoBackend.Models
         public DateTime? DataCompra { get; set; } = DateTime.Now;
         public decimal? ValorTotal { get; set; } = 0;
 
+        public decimal ValorUnitario { get; set; } = 0;
+        public int Quantidade { get; set; }
+
     }
 }

@@ -12,8 +12,8 @@ using ProjetoBackend.Data;
 namespace ProjetoBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241127144853_valoruni")]
-    partial class valoruni
+    [Migration("20241127171525_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -293,14 +293,14 @@ namespace ProjetoBackend.Migrations
                     b.Property<Guid>("ProdutoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("Quantidade")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
 
                     b.Property<decimal?>("ValorTotal")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ValorUnitario")
-                        .HasColumnType("int");
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CompraId");
 

@@ -18,20 +18,35 @@
 
                 <div class="row">
                     <div class="col-12 col-md-12 text-box-container mb-2">
-                        <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId"></select>
+                        <select asp-for="ProdutoId" class="form-control text-box-select " asp-items="ViewBag.ProdutoId"></select>
                         <span asp-validation-for="ProdutoId" class="text-danger"></span>
                     </div>
 
                     <div class="row">
                         <div class="text-box-container form-group col-md-6 mb-2">
-                            <select asp-for="FornecedorId" class="form-control" asp-items="ViewBag.FornecedorId"></select>
+                            <select asp-for="FornecedorId" class="form-control text-box-select " asp-items="ViewBag.FornecedorId"></select>
                             <span asp-validation-for="FornecedorId" class="text-danger"></span>
                         </div>
-                        <div class="col-12 col-md-6 text-box-container">
-                            <input asp-for="ValorTotal" class="text-box-input form-control" oninput="formatarTelefone(this)" id="telefone" placeholder="Valor Total" />
-                            <span asp-validation-for="ValorTotal" class="text-danger"></span>
+                        <div class="col-12 col-md-6 text-box-container mb-2">
+                            <input asp-for="Quantidade" class="text-box-input form-control" placeholder="Quantidade" />
+                            <span asp-validation-for="Quantidade" class="text-danger"></span>
                         </div>
+
                     </div>
+                    <div class="col-12 col-md-6 text-box-container">
+                        <input asp-for="ValorUnitario" class="text-box-input form-control" placeholder="Valor Unitario" />
+                        <span asp-validation-for="ValorUnitario" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-12 col-md-6 text-box-container">
+                        <input asp-for="ValorTotal" class="text-box-input form-control" readonly placeholder="Valor Total" />
+                        <span asp-validation-for="ValorTotal" class="text-danger"></span>
+                    </div>
+
+
+
+
+
                     <div class="col-12 col-md-6 text-box-container mb-2">
                         <input type="date" asp-for="DataCompra" class="text-box-input form-control" hidden placeholder="Data das Compras" />
                         <span asp-validation-for="DataCompra" class="text-danger"></span>
@@ -60,6 +75,18 @@
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial");
         }
+        {
+        <script>
+            // Função para calcular o valor total
+            function calcularValorTotal() {
+                const quantidade = parseFloat(document.getElementById("Quantidade").value) || 0;
+                const valorUnitario = parseFloat(document.getElementById("ValorUnitario").value) || 0;
+                const valorTotal = quantidade * valorUnitario;
+
+                document.getElementById("ValorTotal").value = valorTotal.toFixed(2); // Define o resultado no campo
+            }
+        </script>
+    }
     }
 
     <link rel="stylesheet" href="~/css/site.css" />
