@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoBackend.Data;
 using ProjetoBackend.Models;
@@ -23,6 +22,11 @@ namespace ProjetoBackend.Controllers
         public async Task<IActionResult> Index()
         {
             var servicos = await _context.Servicos.ToListAsync();
+            if (servicos == null || !servicos.Any())
+            {
+                return View(new List<Servico>()); // Retorna uma lista vazia para evitar erros
+            }
+
             return View(servicos.OrderBy(s => s.Nome));
         }
 
@@ -34,8 +38,7 @@ namespace ProjetoBackend.Controllers
                 return NotFound();
             }
 
-            var servico = await _context.Servicos
-                .FirstOrDefaultAsync(m => m.ServicoId == id);
+            var servico = await _context.Servicos.FirstOrDefaultAsync(m => m.ServicoId == id);
             if (servico == null)
             {
                 return NotFound();
@@ -51,15 +54,13 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Servicos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ServicoId,Nome,ValorServico")] Servico servico)
         {
             if (ModelState.IsValid)
             {
-                servico.ServicoId = Guid.NewGuid();
+                servico.ServicoId = Guid.NewGuid(); // Gera um novo GUID para o serviço
                 _context.Add(servico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -68,15 +69,14 @@ namespace ProjetoBackend.Controllers
         }
 
         // GET: Servicos/Edit/5
-        [HttpGet]
-        public IActionResult Editar(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var servico = _context.Servicos.Find(id);
+            var servico = await _context.Servicos.FindAsync(id);
             if (servico == null)
             {
                 return NotFound();
@@ -85,10 +85,7 @@ namespace ProjetoBackend.Controllers
             return View(servico);
         }
 
-
         // POST: Servicos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ServicoId,Nome,ValorServico")] Servico servico)
@@ -118,6 +115,7 @@ namespace ProjetoBackend.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servico);
         }
 
@@ -129,8 +127,7 @@ namespace ProjetoBackend.Controllers
                 return NotFound();
             }
 
-            var servico = await _context.Servicos
-                .FirstOrDefaultAsync(m => m.ServicoId == id);
+            var servico = await _context.Servicos.FirstOrDefaultAsync(m => m.ServicoId == id);
             if (servico == null)
             {
                 return NotFound();
@@ -148,12 +145,13 @@ namespace ProjetoBackend.Controllers
             if (servico != null)
             {
                 _context.Servicos.Remove(servico);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        // Verifica se o serviço existe
         private bool ServicoExists(Guid id)
         {
             return _context.Servicos.Any(e => e.ServicoId == id);

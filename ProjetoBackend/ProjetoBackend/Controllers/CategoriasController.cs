@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoBackend.Data;
 using ProjetoBackend.Models;
@@ -24,6 +23,21 @@ namespace ProjetoBackend.Controllers
         {
             var categorias = await _context.Categorias.ToListAsync();
             return View(categorias.OrderBy(c => c.Nome));
+        }
+
+        // GET: Categorias/Search?nome={CategoryName}
+        public async Task<IActionResult> Search(string nome)
+        {
+            if (string.IsNullOrEmpty(nome)) // Se o termo de busca estiver vazio
+            {
+                return RedirectToAction(nameof(Index)); // Redireciona para o Index
+            }
+
+            var categorias = await _context.Categorias
+                .Where(c => c.Nome.Contains(nome)) // Filtra categorias pelo nome
+                .ToListAsync();
+
+            return View("Index", categorias.OrderBy(c => c.Nome)); // Reutiliza a view Index para exibir os resultados
         }
 
         // GET: Categorias/Details/5
@@ -51,8 +65,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Categorias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoriaId,Nome")] Categoria categoria)
@@ -84,8 +96,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Categorias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("CategoriaId,Nome")] Categoria categoria)
