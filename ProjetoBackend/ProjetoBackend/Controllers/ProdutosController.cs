@@ -26,6 +26,21 @@ namespace ProjetoBackend.Controllers
             return View(produtos.OrderBy(p => p.Nome));
         }
 
+        // GET: Produto/Search?nome={ProdutoName}
+        public async Task<IActionResult> Search(string nome)
+        {
+            if (string.IsNullOrEmpty(nome)) // Handle empty search term
+            {
+                return RedirectToAction(nameof(Index)); // Redirect to main Index
+            }
+
+            var produtos = await _context.Produtos
+                .Where(c => c.Nome.Contains(nome))
+                .ToListAsync();
+
+            return View("Index", produtos.OrderBy(c => c.Nome)); // Reuse the existing Index view
+        }
+
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
@@ -37,6 +52,7 @@ namespace ProjetoBackend.Controllers
             var produto = await _context.Produtos
                 .Include(p => p.Categoria)
                 .FirstOrDefaultAsync(m => m.ProdutoId == id);
+
             if (produto == null)
             {
                 return NotFound();
@@ -53,8 +69,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Produtos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Preco,Estoque,CategoriaId")] Produto produto)
@@ -66,6 +80,7 @@ namespace ProjetoBackend.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
             return View(produto);
         }
@@ -83,13 +98,12 @@ namespace ProjetoBackend.Controllers
             {
                 return NotFound();
             }
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
             return View(produto);
         }
 
         // POST: Produtos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ProdutoId,Nome,Preco,Estoque,CategoriaId")] Produto produto)
@@ -117,8 +131,10 @@ namespace ProjetoBackend.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
             return View(produto);
         }
@@ -134,6 +150,7 @@ namespace ProjetoBackend.Controllers
             var produto = await _context.Produtos
                 .Include(p => p.Categoria)
                 .FirstOrDefaultAsync(m => m.ProdutoId == id);
+
             if (produto == null)
             {
                 return NotFound();

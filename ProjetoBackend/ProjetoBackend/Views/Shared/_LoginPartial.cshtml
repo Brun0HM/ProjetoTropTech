@@ -49,8 +49,8 @@
             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá, @User.Identity?.Name!</a>
         </li>
         <li class="nav-item ">
-            <form class="form-inline" style="border:2px solid #D8ADFF; color:#D8ADFF; width:100px; height:46px" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-light align-items-center">Sair</button>
+            <form class="form-inline" style="border:2px border-radius: 20px;  solid #D8ADFF; color:#D8ADFF; width:100px; height:46px" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link  fw-bold Sair">Sair</button>
             </form>
         </li>
     }
