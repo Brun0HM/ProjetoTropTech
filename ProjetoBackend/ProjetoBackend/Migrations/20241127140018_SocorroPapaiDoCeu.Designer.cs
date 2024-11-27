@@ -12,8 +12,8 @@ using ProjetoBackend.Data;
 namespace ProjetoBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241022121620_Start")]
-    partial class Start
+    [Migration("20241127140018_SocorroPapaiDoCeu")]
+    partial class SocorroPapaiDoCeu
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,26 +290,24 @@ namespace ProjetoBackend.Migrations
                     b.Property<Guid>("FornecedorId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("FornecedorId1")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProdutoId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<double?>("ValorTotal")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("ValorTotal")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("CompraId");
 
-                    b.HasIndex("FornecedorId1");
+                    b.HasIndex("FornecedorId");
 
                     b.ToTable("Compras", (string)null);
                 });
 
             modelBuilder.Entity("ProjetoBackend.Models.Fornecedor", b =>
                 {
-                    b.Property<int>("FornecedorId")
+                    b.Property<Guid>("FornecedorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FornecedorId"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Celular")
                         .IsRequired()
@@ -344,8 +342,8 @@ namespace ProjetoBackend.Migrations
                     b.Property<Guid>("ProdutoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Quantidade")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ItemCompraId");
 
@@ -366,14 +364,14 @@ namespace ProjetoBackend.Migrations
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Quantidade")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("ValorTotal")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorTotal")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("ValorUnitario")
-                        .HasColumnType("float");
+                    b.Property<decimal>("ValorUnitario")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("VendaId")
                         .HasColumnType("uniqueidentifier");
@@ -396,15 +394,15 @@ namespace ProjetoBackend.Migrations
                     b.Property<Guid>("CategoriaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Estoque")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Estoque")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Preco")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProdutoId");
 
@@ -469,8 +467,8 @@ namespace ProjetoBackend.Migrations
                     b.Property<int?>("NotaFiscal")
                         .HasColumnType("int");
 
-                    b.Property<double?>("ValorTotal")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("ValorTotal")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("VendaId");
 
@@ -534,7 +532,9 @@ namespace ProjetoBackend.Migrations
                 {
                     b.HasOne("ProjetoBackend.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorId1");
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Fornecedor");
                 });

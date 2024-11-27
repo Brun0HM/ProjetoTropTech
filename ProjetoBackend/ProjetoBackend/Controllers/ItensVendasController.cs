@@ -186,7 +186,7 @@ namespace ProjetoBackend.Controllers
             return _context.ItensVenda.Any(e => e.ItemVendaId == id);
         }
 
-        public double PrecoProduto(Guid id)
+        public decimal PrecoProduto(Guid id)
         {
             var produto = _context.Produtos.Where(p => p.ProdutoId == id).FirstOrDefault();
             return produto.Preco;

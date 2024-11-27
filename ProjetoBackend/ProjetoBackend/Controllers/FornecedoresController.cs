@@ -37,7 +37,7 @@ namespace ProjetoBackend.Controllers
         }
 
         // GET: Fornecedores/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -97,7 +97,7 @@ namespace ProjetoBackend.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FornecedorId,Nome,Email,Celular,CnpjCpf")] Fornecedor fornecedor)
+        public async Task<IActionResult> Edit(Guid id, [Bind("FornecedorId,Nome,Email,Celular,CnpjCpf")] Fornecedor fornecedor)
         {
             if (id != fornecedor.FornecedorId)
             {
@@ -128,7 +128,7 @@ namespace ProjetoBackend.Controllers
         }
 
         // GET: Fornecedores/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -160,7 +160,7 @@ namespace ProjetoBackend.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FornecedorExists(int id)
+        private bool FornecedorExists(Guid id)
         {
             return _context.Fornecedores.Any(e => e.FornecedorId == id);
         }

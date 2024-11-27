@@ -68,6 +68,10 @@ namespace ProjetoBackend.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.FornecedorId = new SelectList(_context.Fornecedores, "FornecedorId", "Nome", compra.FornecedorId);
+            ViewBag.ProdutoId = new SelectList(_context.Produtos, "ProdutoId", "Nome", compra.ProdutoId);
+
             return View(compra);
         }
 

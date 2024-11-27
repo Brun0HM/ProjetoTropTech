@@ -4,7 +4,7 @@ namespace ProjetoBackend.Models
 {
     public class Fornecedor
     {
-        public int FornecedorId { get; set; }
+        public Guid FornecedorId { get; set; } = Guid.NewGuid();
         [Required(ErrorMessage = "O Campo Nome da Categoria é Obrigatório!")]
         [Display(Name = "Fornecedor")]
         public string Nome { get; set; }

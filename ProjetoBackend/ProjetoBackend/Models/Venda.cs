@@ -13,6 +13,6 @@ namespace ProjetoBackend.Models
         [Display(Name = "Data da Venda")]
         public DateTime? DataVenda { get; set; } = DateTime.Now;
         [Display(Name = "Valor Total")]
-        public double? ValorTotal { get; set; } = 0;
+        public decimal? ValorTotal { get; set; } = 0;
     }
 }

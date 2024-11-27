@@ -5,7 +5,7 @@
 namespace ProjetoBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class ProdutoID2 : Migration
+    public partial class SocorroPapaiDoCeu : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

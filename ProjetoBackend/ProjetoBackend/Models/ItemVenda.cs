@@ -16,11 +16,11 @@ namespace ProjetoBackend.Models
         [Display(Name = "Produto")]
         public Produto? Produto { get; set; }
         [Display(Name = "Quantidade")]
-        public double Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
         [Display(Name = "Valor")]
-        public double ValorUnitario { get; set; }
+        public decimal ValorUnitario { get; set; }
         [Display(Name = "Total")]
-        public double ValorTotal { get; set; }
+        public decimal ValorTotal { get; set; }
 
     }
 }

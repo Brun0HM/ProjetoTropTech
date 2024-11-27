@@ -15,6 +15,6 @@ namespace ProjetoBackend.Models
         [Display(Name = "Produto")]
         public Produto? Produto { get; set; }
         [Display(Name = "Quantidade")]
-        public double Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
     }
 }

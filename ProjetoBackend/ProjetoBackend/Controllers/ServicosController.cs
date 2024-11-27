@@ -156,5 +156,21 @@ namespace ProjetoBackend.Controllers
         {
             return _context.Servicos.Any(e => e.ServicoId == id);
         }
+
+        // Adicione este endpoint na sua controller
+        // GET: Servicos/Search?nome={ServicoName}
+        public async Task<IActionResult> Search(string nome)
+        {
+            if (string.IsNullOrEmpty(nome)) // Verifica se o termo de busca está vazio
+            {
+                return RedirectToAction(nameof(Index)); // Redireciona para o Index principal
+            }
+
+            var servicos = await _context.Servicos
+                .Where(s => s.Nome.Contains(nome)) // Filtra pelos nomes que contêm o termo
+                .ToListAsync();
+
+            return View("Index", servicos.OrderBy(s => s.Nome)); // Reutiliza a View "Index" com os dados filtrados
+        }
     }
 }

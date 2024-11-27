@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProjetoBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class Start : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -84,8 +84,7 @@ namespace ProjetoBackend.Migrations
                 name: "Fornecedores",
                 columns: table => new
                 {
-                    FornecedorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FornecedorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Celular = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -221,8 +220,8 @@ namespace ProjetoBackend.Migrations
                 {
                     ProdutoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Preco = table.Column<double>(type: "float", nullable: false),
-                    Estoque = table.Column<double>(type: "float", nullable: false),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Estoque = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoriaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -244,7 +243,7 @@ namespace ProjetoBackend.Migrations
                     NotaFiscal = table.Column<int>(type: "int", nullable: true),
                     ClienteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValorTotal = table.Column<double>(type: "float", nullable: true)
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -263,18 +262,19 @@ namespace ProjetoBackend.Migrations
                 {
                     CompraId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FornecedorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FornecedorId1 = table.Column<int>(type: "int", nullable: true),
+                    ProdutoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataCompra = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValorTotal = table.Column<double>(type: "float", nullable: true)
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Compras", x => x.CompraId);
                     table.ForeignKey(
-                        name: "FK_Compras_Fornecedores_FornecedorId1",
-                        column: x => x.FornecedorId1,
+                        name: "FK_Compras_Fornecedores_FornecedorId",
+                        column: x => x.FornecedorId,
                         principalTable: "Fornecedores",
-                        principalColumn: "FornecedorId");
+                        principalColumn: "FornecedorId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -284,9 +284,9 @@ namespace ProjetoBackend.Migrations
                     ItemVendaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     VendaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProdutoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quantidade = table.Column<double>(type: "float", nullable: false),
-                    ValorUnitario = table.Column<double>(type: "float", nullable: false),
-                    ValorTotal = table.Column<double>(type: "float", nullable: false)
+                    Quantidade = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ValorUnitario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -337,7 +337,7 @@ namespace ProjetoBackend.Migrations
                     ItemCompraId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompraId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProdutoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quantidade = table.Column<double>(type: "float", nullable: false)
+                    Quantidade = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -396,9 +396,9 @@ namespace ProjetoBackend.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Compras_FornecedorId1",
+                name: "IX_Compras_FornecedorId",
                 table: "Compras",
-                column: "FornecedorId1");
+                column: "FornecedorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ItensCompra_CompraId",
